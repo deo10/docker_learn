@@ -1,7 +1,10 @@
+// create docker swarm service
 docker service create --name simple-web-app \
 --replicas 3 \
 --publish published=8083,target=8080 \
 --env APP_COLOR=pink \
 kodekloud/webapp-color
 
+// add replica for running service
 docker service scale simple-web-app=4
+
