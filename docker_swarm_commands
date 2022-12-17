@@ -7,4 +7,8 @@ kodekloud/webapp-color
 
 // add replica for running service
 docker service scale simple-web-app=4
+docker service update --replicas 4 simple-web-app
 
+// intervew questions Docker & Docker Swarm
+// https://www.edureka.co/blog/interview-questions/docker-interview-questions/
+// https://climbtheladder.com/docker-swarm-interview-questions/
