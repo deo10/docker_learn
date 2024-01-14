@@ -1,0 +1,8 @@
+#docker jq
+docker image inspect ubuntu:latest | jq -r '.[0].Os'
+
+#for docker desktop & powershell
+docker inspect stedolan/jq > file.json
+cat .\file.json | docker run --rm -i stedolan/jq -r '.[0].RepoTags'
+
+docker inspect stedolan/jq | docker run --rm -i stedolan/jq -r '.[0].RepoTags'

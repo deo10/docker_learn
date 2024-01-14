@@ -1,0 +1,68 @@
+#docker start
+#install
+
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+docker version
+
+#docker login
+docker login -u <username> -p <password> registry.example.com
+docker-credential-desktop list # to see creds used for docker login
+
+#docker export\import from container\to image list
+docker export -o export_image.tar container_id
+docker load export_image.tar image_name
+
+#docker save\load
+#create docker image from existing(running) docker container
+docker commit conteiner_id image:tag #create image
+docker images #check that image created
+
+#save docker image and load it with proper tag
+docker image ls
+docker image save games:devops -o games_devops.tar
+docker image load -i games_devops.tar
+docker image tag image_id games:devops
+
+#docker push\pull images to\from repo
+docker pull ubuntu:latest
+docker push deo10\repo_name:tag_name
+
+#create container with volume that mapped to /opt/security/
+docker run -d --name blog -v /opt/security:/home nginx:latest
+
+#copy file from to container
+docker cp /opt/security/sample.txt my_container:/home/
+
+#enable user jim to run docker commands without sudo
+sudo usermod -aG docker jim #add user to the group
+su - jim #log as jim
+docker version #check docker command
+
+---
+#task
+#install apache and configure it's port to 8088 on existing container
+docker ps --all
+docker exec it container_name /bin/bash
+
+#in container bash
+apt update
+apt install apache2
+apt install vim
+vi /etc/apache2/ports.conf #change port
+service apache2 start
+service apache2 status
+curl http://localhost:8088
+exit
+---
