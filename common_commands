@@ -66,3 +66,8 @@ service apache2 status
 curl http://localhost:8088
 exit
 ---
+
+#create network with config (bridge driver) + use subnet 192.168.0.0/24 and iprange 192.168.0.3/24.
+
+docker network create --subnet=192.168.0.0/24 --ip-range=192.168.0.3/24 blog
+docker network inspect blog

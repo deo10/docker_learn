@@ -12,3 +12,6 @@ services:
     redis:
         image: redis
         container_name: redis
+
+#run
+#docker-compose up -d

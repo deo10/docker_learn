@@ -1,0 +1,14 @@
+#create docker compose with httpd image, map port 80 to 5000, and volume
+#docker-compose.yml
+
+version: '3'
+services:
+  my_httpd:  # You can use any name you prefer for the service
+    container_name: httpd
+    image: httpd:latest
+    ports:
+      - "5000:80" #Map 80 port of container with port 5000 of docker host
+    volumes:
+      - /opt/devops:/usr/local/apache2/htdocs:ro #Map container's /usr/local/apache2/htdocs volume with /opt/devops volume of docker host
+#run
+#docker-compose up -d

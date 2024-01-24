@@ -1,0 +1,28 @@
+#Dockerfile create for apache on 5002 port
+#base image
+FROM ubuntu
+ARG DEBIAN_FRONTEND=noninteractive
+
+#install apache and change default port in config
+RUN apt-get update
+RUN apt-get install apache2 -y
+
+#change default port to 5002
+RUN sed -i "s/80/5002/g" /etc/apache2/ports.conf
+
+EXPOSE 5002
+
+#run apache service
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND", "-k", "start"]
+
+
+#commands
+#build
+#docker build -t apache2 .
+
+#run
+#docker run --name http -p 5002:5002 -d apache2
+
+#check
+#docker ps
+#curl http://localhost:5002
