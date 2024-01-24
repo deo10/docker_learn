@@ -26,7 +26,7 @@ docker load export_image.tar image_name
 
 #docker save\load
 #create docker image from existing(running) docker container
-docker commit conteiner_id image:tag #create image
+docker commit container_id image:tag #create image
 docker images #check that image created
 
 #save docker image and load it with proper tag
