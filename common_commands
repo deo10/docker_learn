@@ -35,6 +35,11 @@ docker image save games:devops -o games_devops.tar
 docker image load -i games_devops.tar
 docker image tag image_id games:devops
 
+#docker build
+docker build /tmp/docker -t webapp #using a context build path /tmp/docker + name webapp
+docker build https://github.com/repo_name/name.git#dev:docker #build from a directory called docker in the branch dev
+--no-cache #disable the cache while building a docker image
+
 #docker push\pull images to\from repo
 docker pull ubuntu:latest
 docker push deo10\repo_name:tag_name
