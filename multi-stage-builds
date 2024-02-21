@@ -1,0 +1,17 @@
+**Dockerfile**
+
+FROM node #build app or FROM node AS builder
+COPY . .
+RUN npm install
+RUN npm run build
+
+FROM nginx #create image of app
+COPY --from=0 dist /usr/share/nginx/html #or --from=builder copy dist from node build app step
+CMD [ "nginx", "-g", "daemon off;" ]
+
+---
+# full build
+docker build -t my-app .
+
+# specific stage
+docker build --target builder -t my-app .
