@@ -26,3 +26,12 @@ CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND", "-k", "start"]
 #check
 #docker ps
 #curl http://localhost:5002
+
+
+#improved version combined RUNs in one layer
+# Install Apache and change default port in config
+RUN apt-get update \
+    && apt-get install -y apache2 \
+    && sed -i "s/80/${APACHE_PORT}/g" /etc/apache2/ports.conf \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
