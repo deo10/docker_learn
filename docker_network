@@ -1,0 +1,31 @@
+# Network in Docker
+
+# default created networks:
+Bridge (default) 172.17.0.1 
+Host
+none
+
+# specify network
+docker run Ubuntu --network=host
+
+# create network
+docker network create \
+   -- driver bridge \
+   -- subnet 182.18.0.0/16 \
+   custom-network-name
+
+docker network ls # list all present networks
+
+docker network inspect network-id # details for the network settings
+
+# connect\disconnect to specific network
+docker network connect network-name container-name
+docker network disconnect network-name container-name
+
+# docker DNS
+allows to resolve containers by their names instead of IP
+DNS server IP - 127.0.0.11
+
+# Network Namespaces
+
+https://kodekloud.com/topic/networking-deep-dive-docker/
