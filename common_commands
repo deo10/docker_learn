@@ -76,3 +76,34 @@ exit
 
 docker network create --subnet=192.168.0.0/24 --ip-range=192.168.0.3/24 blog
 docker network inspect blog
+
+---
+docker volume commands
+
+Create a Volume:
+docker volume create my_volume
+
+List Volumes:
+docker volume ls
+
+Inspect a Volume:
+docker volume inspect my_volume
+
+Remove a Volume:
+docker volume rm my_volume
+
+Mount a Volume when Running a Container:
+docker run -v my_volume:/path/in/container image_name
+
+Mount a Host Directory as a Volume:
+docker run -v /host/path:/container/path image_name
+
+Mount a Named Volume in a Docker Compose File:
+version: '3'
+services:
+  my_service:
+    image: image_name
+    volumes:
+      - my_volume:/path/in/container
+volumes:
+  my_volume:
