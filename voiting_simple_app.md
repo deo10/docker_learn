@@ -2,7 +2,10 @@ url
 https://github.com/dockersamples/example-voting-app.git
 
 Running app using separate containers connected by --link
+<<<<<<< HEAD
 https://kodekloud.com/topic/example-for-voting-application/
+=======
+>>>>>>> 512e74351ea18986245a62333283bb6aba510f3b
 
 git clone
 
