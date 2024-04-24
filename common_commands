@@ -98,6 +98,19 @@ docker run -v my_volume:/path/in/container image_name
 Mount a Host Directory as a Volume:
 docker run -v /host/path:/container/path image_name
 
+
+Docker Compose:
+docker-compose up\down(rm)
+up -d \ -detach
+
+docker-compose stop (stop but not delete)
+
+docker-compose ps (list the containers created by d-c)
+
+docker-compose logs (to check the logs)
+
+docker-compose top (to see running process inside of containers)
+
 Mount a Named Volume in a Docker Compose File:
 version: '3'
 services:
