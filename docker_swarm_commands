@@ -1,3 +1,20 @@
+Docker swarm nodes -> Manager, Worker
+TCP 2377 - cluster management communication
+TCP & UPD 7946 - communication between nodes
+UDP 4789 - overlay network traffic
+
+
+// docker swarm setup
+docker swarm init
+docker system info | grep -i swarm
+docker swarm join (to add node to the cluster)
+docker swarm join-token (generate token to join)
+docker node ls
+docker node inspect
+docker node promote (to change from worker to manager role)
+docker node update --availablity drain\active (drain nodes)
+
+
 // create docker swarm service
 docker service create --name simple-web-app \
 --replicas 3 \
