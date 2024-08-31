@@ -1,0 +1,13 @@
+swarm
+
+docker config create config_name /tmp/nginx.conf #takes local file and create config from it
+docker service create --replicas=4 --config src=config_name,target="/etc/nginx/nginx.conf" nginx
+
+docker service update --config-rm config_name nginx #detach config
+docker config rm config_name # remove config
+
+docker config create nginx-conf-new /tmp/nginx-new.conf
+docker service update --config-rm nginx-conf --config-add nginx-conf-new nginx #update config
+
+
+
