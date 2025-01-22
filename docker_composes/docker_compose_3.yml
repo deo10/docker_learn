@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  php_apache:
+    container_name: php_apache
+    image: php:apache
+    ports:
+      - "8087:80"
+    volumes:
+      - /var/www/html:/var/www/html
+    networks:
+      - app-network
+
+  mysql_apache:
+    container_name: mysql_apache
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: database_apache
+      MYSQL_USER: user_apache
+      MYSQL_PASSWORD: complexpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+# Instructions
+# Change passwords
+# Run docker-compose up to start both services.
+# Access the PHP application by entering curl <server-ip or hostname>:8087/
